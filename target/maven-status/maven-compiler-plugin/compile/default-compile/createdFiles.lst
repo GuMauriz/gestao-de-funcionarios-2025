@@ -1,0 +1,11 @@
+br\com\organizatec\gestao\domain\comum\Remuneravel.class
+br\com\organizatec\gestao\domain\visitantes\Visitante.class
+br\com\organizatec\gestao\domain\terceirizados\Terceirizado.class
+br\com\organizatec\gestao\domain\comum\Pessoa.class
+br\com\organizatec\gestao\repository\TerceirizadoRepository.class
+br\com\organizatec\gestao\domain\funcionarios\FuncionarioProprio.class
+br\com\organizatec\gestao\GestaoApplication.class
+br\com\organizatec\gestao\web\FuncionarioController$NovoFuncionarioDto.class
+br\com\organizatec\gestao\repository\FuncionarioProprioRepository.class
+br\com\organizatec\gestao\web\FuncionarioController.class
+br\com\organizatec\gestao\repository\VisitanteRepository.class
