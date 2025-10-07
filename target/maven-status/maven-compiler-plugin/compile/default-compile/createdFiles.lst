@@ -7,6 +7,7 @@ br\com\organizatec\gestao\web\FuncionarioController$NovoFuncionarioDto.class
 br\com\organizatec\gestao\repository\FuncionarioProprioRepository.class
 br\com\organizatec\gestao\web\FuncionarioController.class
 br\com\organizatec\gestao\domain\terceirizados\Terceirizado.class
+br\com\organizatec\gestao\domain\comum\RegistravelAcesso.class
 br\com\organizatec\gestao\service\FuncionarioService.class
 br\com\organizatec\gestao\GestaoApplication.class
 br\com\organizatec\gestao\repository\VisitanteRepository.class

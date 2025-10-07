@@ -3,6 +3,7 @@ package br.com.organizatec.gestao.domain.visitantes;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import br.com.organizatec.gestao.domain.comum.RegistravelAcesso;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "visitantes")
-public class Visitante {
+public class Visitante implements RegistravelAcesso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,5 +90,23 @@ public class Visitante {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    // ---- Implementação da interface RegistravelAcesso ----
+    @Override
+    public void registrarEntrada(LocalDateTime hora) {
+        this.dataHoraEntrada = hora;
+        this.dataHoraSaida = null; // limpa eventual saída anterior
+    }
+
+    @Override
+    public void registrarSaida(LocalDateTime hora) {
+        if (this.dataHoraEntrada == null) {
+            throw new IllegalStateException("Não é possível registrar saída sem entrada.");
+        }
+        if (hora.isBefore(this.dataHoraEntrada)) {
+            throw new IllegalArgumentException("Saída não pode ser anterior à entrada.");
+        }
+        this.dataHoraSaida = hora;
     }
 }

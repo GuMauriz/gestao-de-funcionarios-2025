@@ -1,15 +1,17 @@
 package br.com.organizatec.gestao.domain.terceirizados;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import br.com.organizatec.gestao.domain.comum.Pessoa;
+import br.com.organizatec.gestao.domain.comum.RegistravelAcesso;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "terceirizados")
-public class Terceirizado extends Pessoa {
+public class Terceirizado extends Pessoa implements RegistravelAcesso {
 
     @Column(nullable = false, length = 80)
     private String funcao;
@@ -25,6 +27,13 @@ public class Terceirizado extends Pessoa {
 
     @Column(name = "responsavel_interno", length = 120)
     private String responsavelInterno;
+
+    // ---- Controle de Acesso (abstração comum) ----
+    @Column(name = "entrada")
+    private LocalDateTime dataHoraEntrada;
+
+    @Column(name = "saida")
+    private LocalDateTime dataHoraSaida;
 
     protected Terceirizado() {
         // JPA
@@ -57,4 +66,25 @@ public class Terceirizado extends Pessoa {
 
     public String getResponsavelInterno() { return responsavelInterno; }
     public void setResponsavelInterno(String responsavelInterno) { this.responsavelInterno = responsavelInterno; }
+
+    public LocalDateTime getDataHoraEntrada() { return dataHoraEntrada; }
+    public LocalDateTime getDataHoraSaida() { return dataHoraSaida; }
+
+    // ---- Implementação da interface RegistravelAcesso ----
+    @Override
+    public void registrarEntrada(LocalDateTime hora) {
+        this.dataHoraEntrada = hora;
+        this.dataHoraSaida = null; // reinicia saída num novo ciclo
+    }
+
+    @Override
+    public void registrarSaida(LocalDateTime hora) {
+        if (this.dataHoraEntrada == null) {
+            throw new IllegalStateException("Não é possível registrar saída sem entrada.");
+        }
+        if (hora.isBefore(this.dataHoraEntrada)) {
+            throw new IllegalArgumentException("Saída não pode ser anterior à entrada.");
+        }
+        this.dataHoraSaida = hora;
+    }
 }
