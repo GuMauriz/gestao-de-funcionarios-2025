@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.com.organizatec.gestao.repository.FuncionarioProprioRepositoryTest" time="3.961" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.336" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -64,118 +64,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="deveSalvarFuncionarioEGerarId" classname="br.com.organizatec.gestao.repository.FuncionarioProprioRepositoryTest" time="0.509">
-    <system-out><![CDATA[18:05:15.214 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.organizatec.gestao.repository.FuncionarioProprioRepositoryTest]: FuncionarioProprioRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-18:05:15.344 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.organizatec.gestao.GestaoApplication for test class br.com.organizatec.gestao.repository.FuncionarioProprioRepositoryTest
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
-
- :: Spring Boot ::                (v3.3.4)
-
-2025-10-07T18:05:15.762-03:00  INFO 10600 --- [           main] c.o.g.r.FuncionarioProprioRepositoryTest : Starting FuncionarioProprioRepositoryTest using Java 21.0.8 with PID 10600 (started by Gustavo in C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025)
-2025-10-07T18:05:15.763-03:00  INFO 10600 --- [           main] c.o.g.r.FuncionarioProprioRepositoryTest : The following 1 profile is active: "test"
-2025-10-07T18:05:16.109-03:00  INFO 10600 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-07T18:05:16.173-03:00  INFO 10600 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
-2025-10-07T18:05:16.230-03:00  INFO 10600 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2025-10-07T18:05:16.457-03:00  INFO 10600 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:242807e5-e46a-48b9-87dd-085415184d4b;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2025-10-07T18:05:16.736-03:00  INFO 10600 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:242807e5-e46a-48b9-87dd-085415184d4b (H2 2.2)
-2025-10-07T18:05:16.746-03:00  WARN 10600 --- [           main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
-2025-10-07T18:05:16.763-03:00  INFO 10600 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
-2025-10-07T18:05:16.765-03:00  INFO 10600 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.005s)
-2025-10-07T18:05:16.765-03:00  WARN 10600 --- [           main] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
-2025-10-07T18:05:16.771-03:00  INFO 10600 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
-2025-10-07T18:05:16.799-03:00  INFO 10600 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
-2025-10-07T18:05:16.802-03:00  INFO 10600 --- [           main] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2025-10-07T18:05:16.893-03:00  INFO 10600 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-07T18:05:16.952-03:00  INFO 10600 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-10-07T18:05:16.987-03:00  INFO 10600 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-07T18:05:17.295-03:00  INFO 10600 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-07T18:05:18.064-03:00  INFO 10600 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-Hibernate: 
-    create table funcionarios_proprios (
-        id bigint generated by default as identity,
-        cpf varchar(14) not null,
-        data_nascimento date,
-        nome varchar(120) not null,
-        cargo varchar(80) not null,
-        data_contratacao date not null,
-        departamento varchar(80),
-        matricula varchar(20) not null,
-        salario_base float(53) not null,
-        primary key (id)
-    )
-Hibernate: 
-    create table terceirizados (
-        id bigint generated by default as identity,
-        cpf varchar(14) not null,
-        data_nascimento date,
-        nome varchar(120) not null,
-        empresa varchar(120) not null,
-        fim_contrato date not null,
-        funcao varchar(80) not null,
-        inicio_contrato date not null,
-        responsavel_interno varchar(120),
-        primary key (id)
-    )
-Hibernate: 
-    create table visitantes (
-        id bigint generated by default as identity,
-        entrada timestamp(6) not null,
-        saida timestamp(6),
-        destino varchar(120),
-        documento_identificacao varchar(30) not null,
-        motivo varchar(200),
-        nome_completo varchar(120) not null,
-        numero_cracha varchar(30),
-        primary key (id)
-    )
-Hibernate: 
-    alter table if exists funcionarios_proprios 
-       drop constraint if exists UKf0e39h8vuig58jv5qynw71nu3
-Hibernate: 
-    alter table if exists funcionarios_proprios 
-       add constraint UKf0e39h8vuig58jv5qynw71nu3 unique (cpf)
-Hibernate: 
-    alter table if exists funcionarios_proprios 
-       drop constraint if exists UKgmax3ynou0m2ogxe3qpfe5go8
-Hibernate: 
-    alter table if exists funcionarios_proprios 
-       add constraint UKgmax3ynou0m2ogxe3qpfe5go8 unique (matricula)
-Hibernate: 
-    alter table if exists terceirizados 
-       drop constraint if exists UKbcnw9wvt2dqtduntmkpkkc2vr
-Hibernate: 
-    alter table if exists terceirizados 
-       add constraint UKbcnw9wvt2dqtduntmkpkkc2vr unique (cpf)
-2025-10-07T18:05:18.101-03:00  INFO 10600 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-07T18:05:18.477-03:00  INFO 10600 --- [           main] c.o.g.r.FuncionarioProprioRepositoryTest : Started FuncionarioProprioRepositoryTest in 3.07 seconds (process running for 3.918)
-Hibernate: 
-    insert 
-    into
-        funcionarios_proprios
-        (cargo, cpf, data_contratacao, data_nascimento, departamento, matricula, nome, salario_base, id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, default)
-]]></system-out>
-    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Gustavo\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.19\byte-buddy-agent-1.14.19.jar)
-WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
-WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
-WARNING: Dynamic loading of agents will be disallowed by default in a future release
-]]></system-err>
-  </testcase>
-  <testcase name="deveSalvarCamposHerdadosEEspecificos" classname="br.com.organizatec.gestao.repository.FuncionarioProprioRepositoryTest" time="0.017">
-    <system-out><![CDATA[Hibernate: 
-    insert 
-    into
-        funcionarios_proprios
-        (cargo, cpf, data_contratacao, data_nascimento, departamento, matricula, nome, salario_base, id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, default)
-]]></system-out>
-  </testcase>
+  <testcase name="deveCalcularSalarioPolimorficamente" classname="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.258"/>
+  <testcase name="deveGerarMatriculaAutomaticamente" classname="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.078"/>
 </testsuite>

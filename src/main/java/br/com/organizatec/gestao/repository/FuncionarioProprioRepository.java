@@ -11,4 +11,7 @@ public interface FuncionarioProprioRepository extends JpaRepository<FuncionarioP
     Optional<FuncionarioProprio> findByCpf(String cpf);
 
     Optional<FuncionarioProprio> findByMatricula(String matricula);
+
+    // pega o último funcionário cuja matrícula começa com o prefixo (ex.: "MAT-2025-")
+    Optional<FuncionarioProprio> findTopByMatriculaStartingWithOrderByMatriculaDesc(String prefix);
 }

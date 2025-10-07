@@ -78,9 +78,11 @@ public class FuncionarioProprio extends Pessoa implements Remuneravel {
         this.departamento = departamento;
     }
 
-    // Implementação inicial (regra poderá variar por cargo/depto futuramente)
     @Override
     public double calcularSalarioTotal() {
+        if (cargo != null && cargo.equalsIgnoreCase("Gerente")) {
+            return this.salarioBase * 1.20; // +20% de bônus
+        }
         return this.salarioBase;
     }
 
