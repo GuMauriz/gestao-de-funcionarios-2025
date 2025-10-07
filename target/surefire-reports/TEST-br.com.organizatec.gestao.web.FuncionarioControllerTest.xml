@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.333" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.com.organizatec.gestao.web.FuncionarioControllerTest" time="1.544" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -64,6 +64,26 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="deveCalcularSalarioPolimorficamente" classname="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.259"/>
-  <testcase name="deveGerarMatriculaAutomaticamente" classname="br.com.organizatec.gestao.service.FuncionarioServiceTest" time="0.069"/>
+  <testcase name="postCriacao_deveRetornar201" classname="br.com.organizatec.gestao.web.FuncionarioControllerTest" time="0.252">
+    <system-out><![CDATA[2025-10-07T18:14:45.862-03:00  INFO 20244 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.organizatec.gestao.web.FuncionarioControllerTest]: FuncionarioControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-10-07T18:14:45.905-03:00  INFO 20244 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.organizatec.gestao.GestaoApplication for test class br.com.organizatec.gestao.web.FuncionarioControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2025-10-07T18:14:45.973-03:00  INFO 20244 --- [           main] b.c.o.g.web.FuncionarioControllerTest    : Starting FuncionarioControllerTest using Java 21.0.8 with PID 20244 (started by Gustavo in C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025)
+2025-10-07T18:14:45.974-03:00  INFO 20244 --- [           main] b.c.o.g.web.FuncionarioControllerTest    : No active profile set, falling back to 1 default profile: "default"
+2025-10-07T18:14:47.071-03:00  INFO 20244 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-10-07T18:14:47.071-03:00  INFO 20244 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-10-07T18:14:47.077-03:00  INFO 20244 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2025-10-07T18:14:47.098-03:00  INFO 20244 --- [           main] b.c.o.g.web.FuncionarioControllerTest    : Started FuncionarioControllerTest in 1.177 seconds (process running for 6.018)
+]]></system-out>
+  </testcase>
+  <testcase name="getPorCpf_deveRetornar200" classname="br.com.organizatec.gestao.web.FuncionarioControllerTest" time="0.034"/>
 </testsuite>

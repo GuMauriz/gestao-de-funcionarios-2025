@@ -1,9 +1,13 @@
 package br.com.organizatec.gestao.web;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.organizatec.gestao.domain.funcionarios.FuncionarioProprio;
 import br.com.organizatec.gestao.service.FuncionarioService;
 
-/**
- * Controller mínimo para demonstrar a persistência via Service.
- */
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
@@ -27,6 +28,7 @@ public class FuncionarioController {
         this.service = service;
     }
 
+    // --- CRIAÇÃO (usa matrícula automática no Service) ---
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public FuncionarioProprio criar(@RequestBody NovoFuncionarioDto dto) {
@@ -34,7 +36,7 @@ public class FuncionarioController {
                 dto.nome(),
                 dto.cpf(),
                 LocalDate.parse(dto.dataNascimento()),
-                null, // matrícula será gerada automaticamente pelo Service
+                null, // matrícula gerada no service
                 dto.cargo(),
                 dto.salarioBase(),
                 LocalDate.parse(dto.dataContratacao()),
@@ -43,6 +45,27 @@ public class FuncionarioController {
         return service.criarFuncionario(f);
     }
 
+    // --- CONSULTAS ---
+    @GetMapping
+    public List<FuncionarioProprio> listarTodos() {
+        return service.buscarTodos();
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<FuncionarioProprio> buscarPorCpf(@PathVariable String cpf) {
+        return service.buscarPorCpf(cpf)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/matricula/{matricula}")
+    public ResponseEntity<FuncionarioProprio> buscarPorMatricula(@PathVariable String matricula) {
+        return service.buscarPorMatricula(matricula)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // DTO mínimo de entrada
     public record NovoFuncionarioDto(
             String nome,
             String cpf,

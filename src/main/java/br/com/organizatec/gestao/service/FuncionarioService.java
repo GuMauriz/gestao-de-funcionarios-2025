@@ -81,4 +81,21 @@ public class FuncionarioService {
                 })
                 .orElse(prefixo + "0001");
     }
+
+    // --- BUSCAS (usadas pelo Controller) ---
+    @Transactional(readOnly = true)
+    public java.util.List<FuncionarioProprio> buscarTodos() {
+        return repository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public java.util.Optional<FuncionarioProprio> buscarPorCpf(String cpf) {
+        return repository.findByCpf(cpf);
+    }
+
+    @Transactional(readOnly = true)
+    public java.util.Optional<FuncionarioProprio> buscarPorMatricula(String matricula) {
+        return repository.findByMatricula(matricula);
+    }
+
 }
