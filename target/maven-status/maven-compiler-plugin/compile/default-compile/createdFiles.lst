@@ -3,6 +3,7 @@ br\com\organizatec\gestao\service\ControleAcessoService.class
 br\com\organizatec\gestao\domain\comum\Remuneravel.class
 br\com\organizatec\gestao\domain\visitantes\Visitante.class
 br\com\organizatec\gestao\domain\comum\Pessoa.class
+br\com\organizatec\gestao\web\WebController$RowVM.class
 br\com\organizatec\gestao\repository\TerceirizadoRepository.class
 br\com\organizatec\gestao\domain\funcionarios\FuncionarioProprio.class
 br\com\organizatec\gestao\repository\FuncionarioProprioRepository.class
@@ -21,5 +22,6 @@ br\com\organizatec\gestao\service\RelatorioService.class
 br\com\organizatec\gestao\domain\comum\RegistravelAcesso.class
 br\com\organizatec\gestao\GestaoApplication.class
 br\com\organizatec\gestao\service\TerceirizadoService.class
+br\com\organizatec\gestao\web\WebController.class
 br\com\organizatec\gestao\config\logging\MdcLoggingFilter.class
 br\com\organizatec\gestao\repository\VisitanteRepository.class

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+</head>
+<body>
+<!-- Passa o conteúdo para o layout -->
+<div th:with="content=${#ids.next('content')}">
+  <div th:replace="~{layout :: ${content}}">
+
+    <section th:fragment="${content}">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="h4 mb-0">Circulação (Hoje)</h1>
+
+        <!-- Link visível apenas para RH (aqui demonstrativo; ação real pode ser criada depois) -->
+        <a href="#" class="btn btn-sm btn-dark" sec:authorize="hasRole('RH')">
+          Novo Funcionário
+        </a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-striped align-middle">
+          <thead>
+            <tr>
+              <th style="width:45%">Nome</th>
+              <th style="width:25%">Tipo</th>
+              <th style="width:30%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="linha : ${linhas}">
+              <td th:text="${linha.nome()}">Nome</td>
+              <td th:text="${linha.tipo()}">Tipo</td>
+              <td>
+                <span th:if="${linha.status()} == 'Interno'" class="badge text-bg-dark">Interno</span>
+                <span th:if="${linha.status()} == 'Dentro'" class="badge text-bg-secondary">Dentro</span>
+                <span th:if="${linha.status()} == 'Fora'" class="badge text-bg-light border">Fora</span>
+              </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(linhas)}">
+              <td colspan="3" class="text-center text-muted py-4">Nenhum registro para exibir.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 d-flex gap-2">
+        <!-- Só RH e Segurança veem os botões abaixo (duplicado aqui por conveniência visual, mas o layout já tem) -->
+        <a class="btn btn-outline-dark btn-sm" href="/relatorios/circulacao/csv"
+           sec:authorize="hasAnyRole('RH','SEGURANCA')">
+          Exportar CSV
+        </a>
+        <a class="btn btn-outline-dark btn-sm" href="/relatorios/circulacao/pdf"
+           sec:authorize="hasAnyRole('RH','SEGURANCA')">
+          Exportar PDF
+        </a>
+      </div>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>

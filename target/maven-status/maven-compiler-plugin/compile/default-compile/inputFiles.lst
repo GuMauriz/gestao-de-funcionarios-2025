@@ -7,8 +7,10 @@ C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\orga
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\domain\funcionarios\FuncionarioProprio.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\domain\terceirizados\Terceirizado.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\web\ControleAcessoController.java
+C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\web\CadastroController.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\domain\comum\RegistravelAcesso.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\repository\VisitanteRepository.java
+C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\web\WebController.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\domain\comum\Remuneravel.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\repository\TerceirizadoRepository.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\service\FuncionarioService.java

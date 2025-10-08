@@ -74,6 +74,18 @@
       <version>1.3.39</version>
     </dependency>
 
+    <!-- Thymeleaf (renderização de templates) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <!-- Extras do Thymeleaf para Spring Security (sec:authorize) -->
+    <dependency>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
