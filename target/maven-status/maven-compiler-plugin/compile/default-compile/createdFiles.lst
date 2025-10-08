@@ -15,4 +15,5 @@ br\com\organizatec\gestao\service\RelatorioService.class
 br\com\organizatec\gestao\domain\comum\RegistravelAcesso.class
 br\com\organizatec\gestao\service\FuncionarioService.class
 br\com\organizatec\gestao\GestaoApplication.class
+br\com\organizatec\gestao\config\logging\MdcLoggingFilter.class
 br\com\organizatec\gestao\repository\VisitanteRepository.class

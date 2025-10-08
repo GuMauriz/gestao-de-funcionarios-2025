@@ -3,3 +3,4 @@ br\com\organizatec\gestao\service\FuncionarioServiceTest.class
 br\com\organizatec\gestao\service\RelatorioServiceTest.class
 br\com\organizatec\gestao\web\FuncionarioControllerTest.class
 br\com\organizatec\gestao\web\HomeController.class
+br\com\organizatec\gestao\web\AuthorizationIntegrationTest.class
