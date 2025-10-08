@@ -1,0 +1,581 @@
+{
+  "info": {
+    "name": "Organizatec - Gestão de Funcionários (Demo Completa)",
+    "_postman_id": "f7f6d0b2-3d7e-4c6a-8d90-orga-demo",
+    "description": "Coleção para demonstrar o fluxo completo: criação de dados, controle de acesso e exportação de relatórios (CSV/PDF).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1) Funcionários (RH)",
+      "item": [
+        {
+          "name": "Criar Funcionário - Gustavo Mauriz (Gerente)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/funcionarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "funcionarios"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Gustavo Mauriz\",\n  \"cpf\": \"111.222.333-55\",\n  \"dataNascimento\": \"1992-07-10\",\n  \"cargo\": \"Gerente\",\n  \"salarioBase\": 9000.0,\n  \"dataContratacao\": \"2024-03-01\",\n  \"departamento\": \"TI\"\n}"
+            },
+            "description": "Cria funcionário próprio (Gerente)."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 2xx', function () { pm.response.to.be.success; });",
+                  "var json = {}; try { json = pm.response.json(); } catch(e) {}",
+                  "if (json && json.id) { pm.collectionVariables.set('funcionario_gustavo_id', json.id); }",
+                  "if (json && json.matricula) { pm.collectionVariables.set('funcionario_gustavo_matricula', json.matricula); }"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar Funcionário - Israel Florentino (Analista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/funcionarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "funcionarios"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Israel Florentino\",\n  \"cpf\": \"999.888.777-66\",\n  \"dataNascimento\": \"1994-09-12\",\n  \"cargo\": \"Analista\",\n  \"salarioBase\": 4500.0,\n  \"dataContratacao\": \"2024-02-01\",\n  \"departamento\": \"RH\"\n}"
+            },
+            "description": "Cria funcionário próprio (Analista)."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 2xx', function () { pm.response.to.be.success; });",
+                  "var json = {}; try { json = pm.response.json(); } catch(e) {}",
+                  "if (json && json.id) { pm.collectionVariables.set('funcionario_israel_id', json.id); }",
+                  "if (json && json.matricula) { pm.collectionVariables.set('funcionario_israel_matricula', json.matricula); }"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar Funcionários (RH)",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/funcionarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "funcionarios"
+              ]
+            },
+            "description": "Lista todos os funcionários."
+          }
+        }
+      ]
+    },
+    {
+      "name": "2) Terceirizados (RH)",
+      "item": [
+        {
+          "name": "Criar Terceirizado - Alex Saifi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/terceirizados",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "terceirizados"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Alex Saifi\",\n  \"cpf\": \"222.333.444-55\",\n  \"empresa\": \"TechClean\",\n  \"setor\": \"Limpeza\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 2xx', function () { pm.response.to.be.success; });",
+                  "var json = {}; try { json = pm.response.json(); } catch(e) {}",
+                  "if (json && json.id) { pm.collectionVariables.set('terceirizado_alex_id', json.id); }"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar Terceirizado - Maria Sato",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/terceirizados",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "terceirizados"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Maria Sato\",\n  \"cpf\": \"333.444.555-66\",\n  \"empresa\": \"PredialService\",\n  \"setor\": \"Portaria\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3) Visitantes (Recepção)",
+      "item": [
+        {
+          "name": "Criar Visitante - Nicolas Gomes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "recepcao",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "recepcao123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/visitantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "visitantes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Nicolas Gomes\",\n  \"documento\": \"RG1234567\",\n  \"empresaOrigem\": \"SoftPlus\",\n  \"motivoVisita\": \"Reunião de parceria\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 2xx', function () { pm.response.to.be.success; });",
+                  "var json = {}; try { json = pm.response.json(); } catch(e) {}",
+                  "if (json && json.id) { pm.collectionVariables.set('visitante_nicolas_id', json.id); }"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar Visitante - Camila Duarte",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "recepcao",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "recepcao123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/visitantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "visitantes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Camila Duarte\",\n  \"documento\": \"RG9988776\",\n  \"empresaOrigem\": \"DataX\",\n  \"motivoVisita\": \"Entrevista\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4) Controle de Acesso (Recepção/Segurança)",
+      "item": [
+        {
+          "name": "Entrada - Terceirizado (Alex Saifi)",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "seguranca",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "seg123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/acesso/entrada/terceirizado/{{terceirizado_alex_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "acesso",
+                "entrada",
+                "terceirizado",
+                "{{terceirizado_alex_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Entrada - Visitante (Nicolas Gomes)",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "recepcao",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "recepcao123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/acesso/entrada/visitante/{{visitante_nicolas_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "acesso",
+                "entrada",
+                "visitante",
+                "{{visitante_nicolas_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Saída - Visitante (Nicolas Gomes)",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "seguranca",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "seg123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/acesso/saida/visitante/{{visitante_nicolas_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "acesso",
+                "saida",
+                "visitante",
+                "{{visitante_nicolas_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5) Relatórios (RH/Segurança)",
+      "item": [
+        {
+          "name": "CSV - Circulação Diária",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "seguranca",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "seg123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/relatorios/circulacao/csv",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "circulacao",
+                "csv"
+              ]
+            },
+            "description": "Exporta o CSV consolidado (Funcionários Internos, Terceirizados e Visitantes com status)."
+          }
+        },
+        {
+          "name": "PDF - Circulação Diária",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "rh",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "rh123",
+                  "type": "string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/relatorios/circulacao/pdf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "circulacao",
+                "pdf"
+              ]
+            },
+            "description": "Gera o PDF (OpenPDF) com título e tabela simples."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "funcionario_gustavo_id",
+      "value": ""
+    },
+    {
+      "key": "funcionario_israel_id",
+      "value": ""
+    },
+    {
+      "key": "terceirizado_alex_id",
+      "value": ""
+    },
+    {
+      "key": "visitante_nicolas_id",
+      "value": ""
+    }
+  ]
+}

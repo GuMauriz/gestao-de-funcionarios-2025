@@ -1,0 +1,7 @@
+Tipo,Nome,Documento,Status,Hora_Entrada
+FuncionarioProprio,Gustavo Mauriz,111.222.333-55,Interno,
+FuncionarioProprio,Israel Florentino,999.888.777-66,Interno,
+Terceirizado,Alex Saifi,222.333.444-55,Dentro,2025-10-08T00:04:37.401759
+Terceirizado,Maria Sato,333.444.555-66,Fora,
+Visitante,Nicolas Gomes,333.444.555-66,Fora,2025-10-08T00:37:27.315936
+Visitante,Maria Camilla,000.111.999-88,Fora,
