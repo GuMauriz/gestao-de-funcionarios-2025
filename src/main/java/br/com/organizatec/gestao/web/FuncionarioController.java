@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.organizatec.gestao.domain.funcionarios.FuncionarioProprio;
 import br.com.organizatec.gestao.service.FuncionarioService;
 
+/**
+ * Controller responsável pelos endpoints de CRUD de Funcionários Próprios.
+ * - POST /funcionarios          → cria novo funcionário (matrícula automática)
+ * - GET  /funcionarios          → lista todos
+ * - GET  /funcionarios/cpf/{cpf}        → busca por CPF
+ * - GET  /funcionarios/matricula/{matricula} → busca por matrícula
+ */
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
@@ -36,7 +43,7 @@ public class FuncionarioController {
                 dto.nome(),
                 dto.cpf(),
                 LocalDate.parse(dto.dataNascimento()),
-                null, // matrícula gerada no service
+                null, // matrícula será gerada automaticamente pelo Service
                 dto.cargo(),
                 dto.salarioBase(),
                 LocalDate.parse(dto.dataContratacao()),
@@ -52,14 +59,14 @@ public class FuncionarioController {
     }
 
     @GetMapping("/cpf/{cpf}")
-    public ResponseEntity<FuncionarioProprio> buscarPorCpf(@PathVariable String cpf) {
+    public ResponseEntity<FuncionarioProprio> buscarPorCpf(@PathVariable("cpf") String cpf) {
         return service.buscarPorCpf(cpf)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/matricula/{matricula}")
-    public ResponseEntity<FuncionarioProprio> buscarPorMatricula(@PathVariable String matricula) {
+    public ResponseEntity<FuncionarioProprio> buscarPorMatricula(@PathVariable("matricula") String matricula) {
         return service.buscarPorMatricula(matricula)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

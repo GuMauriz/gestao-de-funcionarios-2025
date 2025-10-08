@@ -3,6 +3,7 @@ br\com\organizatec\gestao\domain\comum\Remuneravel.class
 br\com\organizatec\gestao\domain\visitantes\Visitante.class
 br\com\organizatec\gestao\domain\comum\Pessoa.class
 br\com\organizatec\gestao\repository\TerceirizadoRepository.class
+br\com\organizatec\gestao\web\RelatorioController.class
 br\com\organizatec\gestao\domain\funcionarios\FuncionarioProprio.class
 br\com\organizatec\gestao\web\FuncionarioController$NovoFuncionarioDto.class
 br\com\organizatec\gestao\repository\FuncionarioProprioRepository.class

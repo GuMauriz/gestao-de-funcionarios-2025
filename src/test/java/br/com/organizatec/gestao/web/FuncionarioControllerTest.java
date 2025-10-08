@@ -9,9 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,6 +29,7 @@ import br.com.organizatec.gestao.domain.funcionarios.FuncionarioProprio;
 import br.com.organizatec.gestao.service.FuncionarioService;
 
 @WebMvcTest(controllers = FuncionarioController.class)
+@AutoConfigureMockMvc
 class FuncionarioControllerTest {
 
     @Autowired
@@ -37,10 +41,11 @@ class FuncionarioControllerTest {
     private final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     @Test
+    @WithMockUser(username = "rh", roles = {"RH"})
     @DisplayName("GET /funcionarios/cpf/{cpf} deve retornar 200 e o JSON do funcionário")
     void getPorCpf_deveRetornar200() throws Exception {
         var f = new FuncionarioProprio(
-                "Gustavo Mauriz",
+                "Ana Souza",
                 "123.456.789-00",
                 LocalDate.of(1995, 2, 10),
                 "MAT-2025-0001",
@@ -56,19 +61,20 @@ class FuncionarioControllerTest {
         mockMvc.perform(get("/funcionarios/cpf/{cpf}", "123.456.789-00"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.nome", is("Gustavo Mauriz")))
+                .andExpect(jsonPath("$.nome", is("Ana Souza")))
                 .andExpect(jsonPath("$.cpf", is("123.456.789-00")))
                 .andExpect(jsonPath("$.cargo", is("Analista")))
                 .andExpect(jsonPath("$.matricula", is("MAT-2025-0001")));
     }
 
     @Test
+    @WithMockUser(username = "rh", roles = {"RH"})
     @DisplayName("POST /funcionarios deve retornar 201 Created")
     void postCriacao_deveRetornar201() throws Exception {
         // entrada (DTO sem matrícula)
         String payload = """
         {
-          "nome": "Nicolas Gomes",
+          "nome": "Carlos Silva",
           "cpf": "111.222.333-44",
           "dataNascimento": "1990-05-20",
           "cargo": "Gerente",
@@ -78,9 +84,9 @@ class FuncionarioControllerTest {
         }
         """;
 
-        // saída (service gera matrícula e devolve entidade persistida)
+        // saída simulada
         var salvo = new FuncionarioProprio(
-                "Nicolas Gomes",
+                "Carlos Silva",
                 "111.222.333-44",
                 LocalDate.of(1990, 5, 20),
                 "MAT-2025-0002",
@@ -94,6 +100,7 @@ class FuncionarioControllerTest {
                 .thenReturn(salvo);
 
         mockMvc.perform(post("/funcionarios")
+                        .with(csrf()) // ✅ adiciona token CSRF para POST
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
                 .andExpect(status().isCreated())
