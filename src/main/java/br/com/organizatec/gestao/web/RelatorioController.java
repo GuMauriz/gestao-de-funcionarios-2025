@@ -40,11 +40,7 @@ public class RelatorioController {
     // GET /relatorios/circulacao/pdf
     @GetMapping("/pdf")
     public ResponseEntity<byte[]> pdf() {
-        // Só um exemplo com duas linhas. Depois passaremos dados reais formatados.
-        byte[] pdf = relatorioService.exportarRelatorioPDF(
-                "Relatório de Circulação Diária",
-                List.of("Linha 1 - exemplo", "Linha 2 - exemplo")
-        );
+        byte[] pdf = relatorioService.exportarRelatorioPDF("Relatório de Circulação Diária");
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

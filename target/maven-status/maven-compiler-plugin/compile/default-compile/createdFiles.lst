@@ -8,6 +8,7 @@ br\com\organizatec\gestao\domain\funcionarios\FuncionarioProprio.class
 br\com\organizatec\gestao\web\FuncionarioController$NovoFuncionarioDto.class
 br\com\organizatec\gestao\repository\FuncionarioProprioRepository.class
 br\com\organizatec\gestao\web\FuncionarioController.class
+br\com\organizatec\gestao\config\SecurityConfig.class
 br\com\organizatec\gestao\web\ControleAcessoController.class
 br\com\organizatec\gestao\domain\terceirizados\Terceirizado.class
 br\com\organizatec\gestao\service\RelatorioService.class
