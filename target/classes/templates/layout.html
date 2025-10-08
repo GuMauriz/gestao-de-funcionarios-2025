@@ -1,30 +1,36 @@
 <!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gestão de Funcionários - Organizatec</title>
+  <title th:text="${title} ?: 'Gestão de Funcionários - Organizatec'">Gestão de Funcionários - Organizatec</title>
 
-  <!-- Bootstrap 5 (preto e branco, sem tema extra) -->
+  <!-- Bootstrap 5 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <style>
-    body { background: #fff; color:#000; }
-    .app-brand { font-weight: 700; letter-spacing: .5px; }
-    .sidebar { border-right: 1px solid #eaeaea; }
-    .sidebar a { color:#111; text-decoration: none; }
-    .sidebar a:hover { text-decoration: underline; }
+    body { background:#fff; color:#000; }
+    .app-brand { font-weight:700; letter-spacing:.5px; }
+    .sidebar { border-right:1px solid #eaeaea; min-height: calc(100vh - 72px); }
+    .sidebar a { color:#111; text-decoration:none; }
+    .sidebar a:hover { text-decoration:underline; }
     .table thead th { background:#f7f7f7; }
   </style>
 </head>
 <body>
+
+<!-- Fragmento principal: shell(content) -->
+<div th:fragment="shell(content)">
+
   <header class="border-bottom mb-3">
     <div class="container-fluid py-3 d-flex align-items-center justify-content-between">
       <div class="app-brand">Organizatec • Gestão</div>
 
       <div class="d-flex gap-2">
-        <!-- Botões de relatórios (RH e Segurança) -->
+        <!-- RH e SEGURANCA: relatórios -->
         <a class="btn btn-sm btn-outline-dark"
            href="/relatorios/circulacao/csv"
            sec:authorize="hasAnyRole('RH','SEGURANCA')">
@@ -41,7 +47,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <!-- Menu lateral “simulado” -->
+      <!-- Menu lateral -->
       <aside class="col-12 col-md-3 col-lg-2 sidebar pb-3">
         <div class="px-3">
           <div class="mb-3">
@@ -49,28 +55,35 @@
           </div>
 
           <ul class="list-unstyled">
-            <li sec:authorize="hasRole('RH')">
+            <li class="mb-2"><a href="/home" class="d-block">Dashboard</a></li>
+
+            <!-- RH -->
+            <li class="mb-2" sec:authorize="hasRole('RH')">
               <a href="/cadastro/funcionario" class="d-block">Cadastrar Funcionário</a>
             </li>
-            <li sec:authorize="hasRole('RH')">
+            <li class="mb-2" sec:authorize="hasRole('RH')">
               <a href="/cadastro/terceirizado" class="d-block">Cadastrar Terceirizado</a>
             </li>
-            <li sec:authorize="hasRole('RECEPCAO')">
+
+            <!-- Recepção -->
+            <li class="mb-2" sec:authorize="hasRole('RECEPCAO')">
               <a href="/cadastro/visitante" class="d-block">Cadastrar Visitante</a>
             </li>
           </ul>
         </div>
       </aside>
 
-      <!-- Área principal -->
+      <!-- Área principal: insere o conteúdo da página filha -->
       <main class="col-12 col-md-9 col-lg-10">
         <div class="p-3 p-md-4" th:insert="${content}">Carregando…</div>
       </main>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-          crossorigin="anonymous"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
