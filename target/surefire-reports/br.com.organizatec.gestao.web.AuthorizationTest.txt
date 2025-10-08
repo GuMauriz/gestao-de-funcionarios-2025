@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: br.com.organizatec.gestao.web.AuthorizationTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.104 s <<< FAILURE! -- in br.com.organizatec.gestao.web.AuthorizationTest
+br.com.organizatec.gestao.web.AuthorizationTest.testAcessoRelatoriosApenasRHESeguranca -- Time elapsed: 0.159 s <<< FAILURE!
+java.lang.AssertionError: 
+Response content
+Expected: a string starting with "Tipo,Nome,Documento,Status,Hora_Entrada"
+     but: was ""
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.springframework.test.web.servlet.result.ContentResultMatchers.lambda$string$3(ContentResultMatchers.java:141)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at br.com.organizatec.gestao.web.AuthorizationTest.testAcessoRelatoriosApenasRHESeguranca(AuthorizationTest.java:128)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+br.com.organizatec.gestao.web.AuthorizationTest.testAcessoFuncionariosApenasRH -- Time elapsed: 0.025 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<403> but was:<200>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at br.com.organizatec.gestao.web.AuthorizationTest.testAcessoFuncionariosApenasRH(AuthorizationTest.java:98)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

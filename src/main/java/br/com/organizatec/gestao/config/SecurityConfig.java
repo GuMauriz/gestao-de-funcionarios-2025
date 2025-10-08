@@ -1,6 +1,5 @@
 package br.com.organizatec.gestao.config;
 
-import br.com.organizatec.gestao.config.logging.MdcLoggingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -14,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import br.com.organizatec.gestao.config.logging.MdcLoggingFilter;
+
 @Configuration
 public class SecurityConfig {
 
@@ -25,40 +26,31 @@ public class SecurityConfig {
                                                    MdcLoggingFilter mdcLoggingFilter) throws Exception {
 
         http
-            // CSRF desabilitado para API; H2-console explicitamente ignorado
             .csrf(csrf -> csrf.ignoringRequestMatchers(H2_MATCHER).disable())
-
-            // Necessário para o H2 abrir em frame
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
-
-            // Autorização por perfil, conforme a política da Organizatec
             .authorizeHttpRequests(auth -> auth
-                // H2 console: somente RH (em prod: ideal remover/ desabilitar)
+                // H2 (somente RH; em prod remover)
                 .requestMatchers(H2_MATCHER).hasRole("RH")
 
-                // CRUD Funcionários Próprios: RH
-                .requestMatchers("/funcionarios/**").hasRole("RH")
+                // Funcionários (exato e recursivo)
+                .requestMatchers("/funcionarios", "/funcionarios/**").hasRole("RH")
 
-                // CRUD Terceirizados: RH
-                .requestMatchers("/terceirizados/**").hasRole("RH")
+                // Terceirizados
+                .requestMatchers("/terceirizados", "/terceirizados/**").hasRole("RH")
 
-                // CRUD Visitantes: RECEPCAO
-                .requestMatchers("/visitantes/**").hasRole("RECEPCAO")
+                // Visitantes
+                .requestMatchers("/visitantes", "/visitantes/**").hasRole("RECEPCAO")
 
-                // Controle de acesso (entrada/saída): RECEPCAO e SEGURANCA
-                .requestMatchers("/acesso/**").hasAnyRole("RECEPCAO", "SEGURANCA")
+                // Acesso (entrada/saída)
+                .requestMatchers("/acesso", "/acesso/**").hasAnyRole("RECEPCAO", "SEGURANCA")
 
-                // Relatórios: RH e SEGURANCA
-                .requestMatchers("/relatorios/**").hasAnyRole("RH", "SEGURANCA")
+                // Relatórios
+                .requestMatchers("/relatorios", "/relatorios/**").hasAnyRole("RH", "SEGURANCA")
 
-                // Qualquer outra rota não mapeada: exigir autenticação
+                // Tudo o resto precisa estar logado (não libera sem papel)
                 .anyRequest().authenticated()
             )
-
-            // HTTP Basic para facilitar testes/entrega
             .httpBasic(Customizer.withDefaults())
-
-            // Filtro de auditoria (MDC) antes do filtro de autenticação
             .addFilterBefore(mdcLoggingFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

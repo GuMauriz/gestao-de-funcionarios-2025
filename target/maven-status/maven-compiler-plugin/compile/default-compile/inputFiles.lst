@@ -15,3 +15,4 @@ C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\orga
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\config\SecurityConfig.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\web\RelatorioController.java
 C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\domain\comum\Pessoa.java
+C:\Users\Gustavo\Downloads\gestao-de-funcionarios-2025\src\main\java\br\com\organizatec\gestao\config\logging\MdcLoggingFilter.java
