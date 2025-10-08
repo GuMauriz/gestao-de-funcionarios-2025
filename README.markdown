@@ -63,17 +63,6 @@ mvn spring-boot:run
 
 ### Funcionários Próprios (ROLE_RH)
 - `POST /funcionarios` — cria funcionário (matrícula gerada no Service)  
-  ```json
-  {
-    "nome":"Carlos Silva",
-    "cpf":"111.222.333-44",
-    "dataNascimento":"1990-05-20",
-    "cargo":"Analista",
-    "salarioBase":5000.0,
-    "dataContratacao":"2024-01-10",
-    "departamento":"TI"
-  }
-  ```
 - `GET /funcionarios` — lista todos  
 - `GET /funcionarios/cpf/{cpf}` — busca por CPF  
 - `GET /funcionarios/matricula/{matricula}` — busca por matrícula
@@ -127,9 +116,51 @@ mvn spring-boot:run
 
 ---
 
+## 🧩 Uso da Coleção Postman (Demonstração Completa)
+
+### 📦 Arquivo de Coleção
+O arquivo **Organizatec-Gestao.postman_collection.json** está localizado na pasta:
+```
+/postman/Organizatec-Gestao.postman_collection.json
+```
+
+### 🧰 Como usar
+1. Abra o **Postman** → clique em **Import** → selecione o arquivo `.json`.  
+2. A coleção aparecerá com o nome **Organizatec - Gestão de Funcionários (Demo Completa)**.  
+3. Execute as requisições na sequência indicada (1 a 5):  
+   - Criação de Funcionários (Gustavo Mauriz, Israel Florentino)  
+   - Criação de Terceirizados (Alex Saifi, Maria Sato)  
+   - Criação de Visitantes (Nicolas Gomes, Camila Duarte)  
+   - Registro de Entradas e Saídas (Alex e Nicolas)  
+   - Exportação de **Relatórios CSV/PDF**  
+4. A coleção salva automaticamente variáveis como IDs e matrículas, facilitando as execuções em cadeia.  
+5. Exporte os resultados e salve em:
+```
+/artefatos-exemplo/
+  ├─ relatorio_circulacao.csv
+  └─ relatorio_circulacao.pdf
+```
+
+### 🧾 Exemplos esperados
+**CSV (abre no Excel):**
+```
+Tipo,Nome,Documento,Status,Hora_Entrada
+FuncionarioProprio,Gustavo Mauriz,111.222.333-55,Interno,
+FuncionarioProprio,Israel Florentino,999.888.777-66,Interno,
+Terceirizado,Alex Saifi,222.333.444-55,Fora,2025-10-07T09:45
+Visitante,Nicolas Gomes,RG1234567,Dentro,2025-10-07T10:20
+```
+
+**PDF:**  
+O relatório apresenta o título “Relatório de Circulação Diária” e uma tabela consolidada com todos os registros de circulação.
+
+---
+
 ## ✍️ Autoria
 
-Projeto desenvolvido para fins acadêmicos pelos alunos do sexto semestre de Engenharia da Computação (2°Semestre - 2025) - FESA: Alex Saifi, Gustavo Mauriz, Nicolas Gomes - EM nome da empresa **Organizatec**.  
+Projeto desenvolvido para fins acadêmicos pelos alunos do sexto semestre de Engenharia da Computação (2° Semestre - 2025) - FESA:  
+**Alex Saifi**, **Gustavo Mauriz**, **Nicolas Gomes**  
+em nome da empresa **Organizatec**.  
 Módulos e código documentados em JavaDoc conforme boas práticas.
 
 ---
